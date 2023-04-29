@@ -9,19 +9,20 @@ class EmployeeService {
     }
 
     createEmployee(employee) {
-        return axios.post(EMPLOYEE_API_BASE_URL, employee);
+        let employees = [employee]
+        return axios.post(EMPLOYEE_API_BASE_URL + "/addEmployees/",employees);
     }
 
     getEmployeeById(id) {
-        return axios.get(EMPLOYEE_API_BASE_URL + `/${id}`);
+        return axios.get(EMPLOYEE_API_BASE_URL + "/getEmployeeById/" + id);
     }
 
     updateEmployee(id, employee) {
-        return axios.put(EMPLOYEE_API_BASE_URL + `/${id}`, employee);
+        return axios.put(EMPLOYEE_API_BASE_URL + "/updateEmployeeById/" + id, employee);
     }
 
     deleteEmployee(id) {
-        return axios.delete(EMPLOYEE_API_BASE_URL + `/${id}`);
+        return axios.delete(EMPLOYEE_API_BASE_URL + "/deleteEmployeeById/" + id);
     }
 }
 
