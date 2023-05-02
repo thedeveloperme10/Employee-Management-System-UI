@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react'
+import { Link } from 'react-router-dom'
 import employeeService from '../services/EmsService'
 
 const EMSComponent = () => {
@@ -114,7 +115,7 @@ const EMSComponent = () => {
                     </thead>
                     <tbody>
                         {
-                            employees.map(
+                            employees?.map(
                                 employee =>
                                     <tr key={employee.employeeId}>
                                         <td> {employee.employeeId} </td>
@@ -124,8 +125,29 @@ const EMSComponent = () => {
                                         <td> {employee.phoneNumber} </td>
                                         <td> {employee.departmentId} </td>
                                         <td> 
-                                            <button type="button" className="btn btn-info" onClick={(e) => setDetailsForUpdateEmployee(employee)}> Update </button>
-                                            <button type="button" className="btn btn-danger" onClick={(e) => deleteEmployee(employee)}> Delete </button> 
+                                            <Link 
+                                                to = {"/employee/" + employee.employeeId}
+                                                className = "btn btn-primary" 
+                                                style={{marginLeft:'1em'}} 
+                                            > 
+                                                View Details 
+                                            </Link>
+                                            <button 
+                                                type="button" 
+                                                className="btn btn-info" 
+                                                onClick={(e) => setDetailsForUpdateEmployee(employee)}
+                                                style={{marginLeft:'1em'}} 
+                                            > 
+                                                Update 
+                                            </button>
+                                            <button 
+                                                type="button" 
+                                                className="btn btn-danger" 
+                                                onClick={(e) => deleteEmployee(employee)} 
+                                                style={{marginLeft:'1em'}} 
+                                            > 
+                                                Delete 
+                                            </button> 
                                         </td>
                                     </tr>
                             )
@@ -218,8 +240,18 @@ const EMSComponent = () => {
                                     </input>
                                 </div>
 
-                                <button className = "btn btn-success" onClick = {(e) => saveOrUpdateEmployee(e)} >Submit </button>
-                                <button className="btn btn-danger"> Cancel </button>
+                                <button 
+                                    className = "btn btn-success" 
+                                    onClick = {(e) => saveOrUpdateEmployee(e)} 
+                                >
+                                    Submit 
+                                </button>
+                                <button 
+                                    className="btn btn-danger" 
+                                    style={{marginLeft:'1em'}} 
+                                > 
+                                    Cancel 
+                                </button>
                             </form>
 
                         </div>
