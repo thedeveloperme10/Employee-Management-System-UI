@@ -36,10 +36,9 @@ const EMSComponent = () => {
         })
 
         setTimeout(() => {
-        
-            if(!isNaN(employeeIdInDB)){
+            console.log(employeeIdInDB)
+            if(employeeIdInDB){
                 employeeService.updateEmployee(employeeId, employee).then((response) => {
-
                     employeeService.getEmployees().then((response) => {
                         setEmployees(response.data)
                     })
@@ -48,7 +47,6 @@ const EMSComponent = () => {
                 })
             }else{
                 employeeService.createEmployee(employee).then((response) =>{
-
                     employeeService.getEmployees().then((response) => {
                         setEmployees(response.data)
                     })
@@ -99,8 +97,116 @@ const EMSComponent = () => {
 
 
     return (
-        <div>
-        
+        <div className="container">
+            <br /><br />
+            <div className="row">
+            <div className="card col-md-8 offset-md-2">
+            {title()}
+            <div className="card-body">
+            <form>
+            <div className="row mb-2">
+                <div className="col-md-4">
+                <div className="form-group">
+                    <label className="form-label">Employee ID:</label>
+                    <input
+                    type="text"
+                    placeholder="Enter employee id"
+                    name="employeeId"
+                    className="form-control"
+                    value={employeeId}
+                    onChange={(e) => setEmployeeId(e.target.value)}
+                    readOnly={isEmployeeIdReadOnly}
+                    />
+                </div>
+                </div>
+                <div className="col-md-4">
+                <div className="form-group">
+                    <label className="form-label">Employee Name:</label>
+                    <input
+                    type="text"
+                    placeholder="Enter employee name"
+                    name="employeeName"
+                    className="form-control"
+                    value={employeeName}
+                    onChange={(e) => setEmployeeName(e.target.value)}
+                    />
+                </div>
+                </div>
+                <div className="col-md-4">
+                <div className="form-group">
+                    <label className="form-label">Age:</label>
+                    <input
+                    type="number"
+                    placeholder="Enter age"
+                    name="age"
+                    className="form-control"
+                    value={age}
+                    onChange={(e) => setAge(e.target.value)}
+                    />
+                </div>
+                </div>
+            </div>
+            <div className="row mb-2">
+                <div className="col-md-4">
+                <div className="form-group">
+                    <label className="form-label">Gender:</label>
+                    <input
+                    type="text"
+                    placeholder="Enter gender"
+                    name="gender"
+                    className="form-control"
+                    value={gender}
+                    onChange={(e) => setGender(e.target.value)}
+                    />
+                </div>
+                </div>
+                <div className="col-md-4">
+                <div className="form-group">
+                    <label className="form-label">Phone Number:</label>
+                    <input
+                    type="number"
+                    placeholder="Enter phone number"
+                    name="phoneNumber"
+                    className="form-control"
+                    value={phoneNumber}
+                    onChange={(e) => setPhoneNumber(e.target.value)}
+                    />
+                </div>
+                </div>
+                <div className="col-md-4">
+                <div className="form-group">
+                    <label className="form-label">Department ID:</label>
+                    <input
+                    type="text"
+                    placeholder="Enter department id"
+                    name="departmentId"
+                    className="form-control"
+                    value={departmentId}
+                    onChange={(e) => setDepartmentId(e.target.value)}
+                    />
+                </div>
+                </div>
+            </div>
+            <div className="row">
+                <div className="col-md-1">
+                    <button
+                        className="btn btn-success"
+                        onClick={(e) => saveOrUpdateEmployee(e)}
+                    >
+                        Submit
+                    </button>
+                    </div>
+                    <div className="col-md-1">
+                                        <button className="btn btn-danger" style={{ marginLeft: '1em' }}>
+                        Cancel
+                    </button>
+                    </div>
+                </div>
+                </form>
+                </div>
+            </div>
+        </div>
+        <br /><br />
             <div className='container'>
                 <h2 className="text-center"> Employees </h2>
                 <table className="table table-bordered table-striped">
@@ -155,110 +261,6 @@ const EMSComponent = () => {
                     </tbody>
                 </table>
             </div>
-
-            <br /><br />
-            <div className = "container">
-                <div className = "row">
-                    <div className = "card col-md-6 offset-md-3 offset-md-3">
-                       {
-                           title()
-                       }
-                        <div className = "card-body">
-                            <form>
-                                <div className = "form-group mb-2">
-                                    <label className = "form-label"> Employee ID :</label>
-                                    <input
-                                        type = "text"
-                                        placeholder = "Enter employee id"
-                                        name = "employeeId"
-                                        className = "form-control"
-                                        value = {employeeId}
-                                        onChange = {(e) => setEmployeeId(e.target.value)}
-                                        readOnly = {isEmployeeIdReadOnly}
-                                    >
-                                    </input>
-                                    <span value={isEmployeeIdReadOnly}></span>
-                                </div>
-                                <div className = "form-group mb-2">
-                                    <label className = "form-label"> Employee Name :</label>
-                                    <input
-                                        type = "text"
-                                        placeholder = "Enter employee name"
-                                        name = "employeeName"
-                                        className = "form-control"
-                                        value = {employeeName}
-                                        onChange = {(e) => setEmployeeName(e.target.value)}
-                                    >
-                                    </input>
-                                </div>
-                                <div className = "form-group mb-2">
-                                    <label className = "form-label"> Age :</label>
-                                    <input
-                                        type = "number"
-                                        placeholder = "Enter age"
-                                        name = "age"
-                                        className = "form-control"
-                                        value = {age}
-                                        onChange = {(e) => setAge(e.target.value)}
-                                    >
-                                    </input>
-                                </div>
-                                <div className = "form-group mb-2">
-                                    <label className = "form-label"> Gender :</label>
-                                    <input
-                                        type = "text"
-                                        placeholder = "Enter gender"
-                                        name = "gender"
-                                        className = "form-control"
-                                        value = {gender}
-                                        onChange = {(e) => setGender(e.target.value)}
-                                    >
-                                    </input>
-                                </div>
-                                <div className = "form-group mb-2">
-                                    <label className = "form-label"> Phone Number :</label>
-                                    <input
-                                        type = "number"
-                                        placeholder = "Enter phone number"
-                                        name = "phoneNumber"
-                                        className = "form-control"
-                                        value = {phoneNumber}
-                                        onChange = {(e) => setPhoneNumber(e.target.value)}
-                                    >
-                                    </input>
-                                </div>
-                                <div className = "form-group mb-2">
-                                    <label className = "form-label"> Department Id :</label>
-                                    <input
-                                        type = "text"
-                                        placeholder = "Enter department id"
-                                        name = "departmentId"
-                                        className = "form-control"
-                                        value = {departmentId}
-                                        onChange = {(e) => setDepartmentId(e.target.value)}
-                                    >
-                                    </input>
-                                </div>
-
-                                <button 
-                                    className = "btn btn-success" 
-                                    onClick = {(e) => saveOrUpdateEmployee(e)} 
-                                >
-                                    Submit 
-                                </button>
-                                <button 
-                                    className="btn btn-danger" 
-                                    style={{marginLeft:'1em'}} 
-                                > 
-                                    Cancel 
-                                </button>
-                            </form>
-
-                        </div>
-                    </div>
-                </div>
-            </div>
-
         </div>
     )
 }

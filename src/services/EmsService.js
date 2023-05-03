@@ -10,19 +10,24 @@ class EmployeeService {
 
     createEmployee(employee) {
         let employees = [employee]
-        return axios.post(EMPLOYEE_API_BASE_URL + "/addEmployees/",employees);
+        return axios.post(EMPLOYEE_API_BASE_URL + "/addEmployees/", employees).then((response) => {
+            window.alert("Employee added successfully")
+        });
     }
 
     getEmployeeById(id) {
         return axios.get(EMPLOYEE_API_BASE_URL + "/getEmployeeById/" + id);
     }
 
-    updateEmployee(id, employee) {
-        return axios.put(EMPLOYEE_API_BASE_URL + "/updateEmployeeById/" + id, employee);
+    async updateEmployee(id, employee) {
+        const response = await axios.put(EMPLOYEE_API_BASE_URL + "/updateEmployeeById/" + id, employee);
+        window.alert("Employee with Id - " + response.data.employeeId + " updated successfully");
     }
 
     deleteEmployee(id) {
-        return axios.delete(EMPLOYEE_API_BASE_URL + "/deleteEmployeeById/" + id);
+        return axios.delete(EMPLOYEE_API_BASE_URL + "/deleteEmployeeById/" + id).then((response) => {
+            window.alert("Employee with Id - " + id + " deleted successfully");
+        });
     }
 
     getEmployeeWrapperById(id) {

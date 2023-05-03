@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import employeeService from '../services/EmsService'
 import dependentService from '../services/DependentService'
 import insuranceService from '../services/InsuranceService'
-import { useParams } from 'react-router-dom'
+import { useParams, Link } from 'react-router-dom'
 import PieRechartComponent from "./PieRechartComponent";
 
 const EmployeeWrapperComponent = () => {
@@ -141,8 +141,14 @@ const EmployeeWrapperComponent = () => {
     
     return (
         <div>
-            <br /><br />
             <div className='container'>
+                <Link
+                    to={"/"}
+                    className="btn btn-primary"
+                    style={{ marginLeft: '1em', position: 'sticky', top: 5 }}
+                >
+                    Back to Employees List
+                </Link>
                 <h2 className="text-center"> Employee {employee.employeeName} </h2>
                 <br />
                 <div>
@@ -270,94 +276,93 @@ const EmployeeWrapperComponent = () => {
                     </table>
                 </div>
 
-                <div className = "card-body">
-                    <form>
-                        <div className = "form-group mb-2">
-                            <label className = "form-label"> Dependent ID :</label>
-                            <input
-                                type = "text"
-                                placeholder = "Enter dependent id"
-                                name = "dependentId"
-                                className = "form-control"
-                                value = {dependentId}
-                                onChange = {(d) => setDependentId(d.target.value)}
-                            >
-                            </input>
-                        </div>
-                        <div className = "form-group mb-2">
-                            <label className = "form-label"> Employee ID :</label>
-                            <input
-                                type = "text"
-                                placeholder = "Enter employee id"
-                                name = "employeeId"
-                                className = "form-control"
-                                value = {employeeId}
-                                onChange = {(d) => setEmployeeId(d.target.value)}
-                            >
-                            </input>
-                        </div>
-                        <div className = "form-group mb-2">
-                            <label className = "form-label"> Dependent Name :</label>
-                            <input
-                                type = "text"
-                                placeholder = "Enter dependent name"
-                                name = "dependentName"
-                                className = "form-control"
-                                value = {dependentName}
-                                onChange = {(d) => setDependentName(d.target.value)}
-                            >
-                            </input>
-                        </div>
-                        <div className = "form-group mb-2">
-                            <label className = "form-label"> Dependent Age :</label>
-                            <input
-                                type = "number"
-                                placeholder = "Enter dependent age"
-                                name = "dependentAge"
-                                className = "form-control"
-                                value = {dependentAge}
-                                onChange = {(d) => setDependentAge(d.target.value)}
-                            >
-                            </input>
-                        </div>
-                        <div className = "form-group mb-2">
-                            <label className = "form-label"> Dependent Gender :</label>
-                            <input
-                                type = "text"
-                                placeholder = "Enter Dependent Gender"
-                                name = "dependentGender"
-                                className = "form-control"
-                                value = {dependentGender}
-                                onChange = {(d) => setDependentGender(d.target.value)}
-                            >
-                            </input>
-                        </div>
-                        <div className = "form-group mb-2">
-                            <label className = "form-label"> Relationship :</label>
-                            <input
-                                type = "text"
-                                placeholder = "Enter Relationship"
-                                name = "relationship"
-                                className = "form-control"
-                                value = {relationship}
-                                onChange = {(d) => setRelationship(d.target.value)}
-                            >
-                            </input>
-                        </div>
-                        <button 
-                            className = "btn btn-success" 
-                            onClick = {(d) => saveOrUpdateDependent(d)} 
-                        >
-                            Submit 
-                        </button>
-                        <button 
-                            className="btn btn-danger" 
-                            style={{marginLeft:'1em'}} 
-                        > 
-                            Cancel 
-                        </button>
-                    </form>
+                <div className="card col-md-8 offset-md-2">
+                    <br />
+                    <h2 className="text-center">Add/Update Dependent</h2>
+                    <div className="card-body">
+                        <form>
+                            <div className="row">
+                                <div className="col-md-4 form-group mb-2">
+                                    <label className="form-label"> Dependent ID :</label>
+                                    <input
+                                        type="text"
+                                        placeholder="Enter dependent id"
+                                        name="dependentId"
+                                        className="form-control"
+                                        value={dependentId}
+                                        onChange={(d) => setDependentId(d.target.value)}
+                                    />
+                                </div>
+                                <div className="col-md-4 form-group mb-2">
+                                    <label className="form-label"> Employee ID :</label>
+                                    <input
+                                        type="text"
+                                        placeholder="Enter employee id"
+                                        name="employeeId"
+                                        className="form-control"
+                                        value={employeeId}
+                                        onChange={(d) => setEmployeeId(d.target.value)}
+                                    />
+                                </div>
+                                <div className="col-md-4 form-group mb-2">
+                                    <label className="form-label"> Dependent Name :</label>
+                                    <input
+                                        type="text"
+                                        placeholder="Enter dependent name"
+                                        name="dependentName"
+                                        className="form-control"
+                                        value={dependentName}
+                                        onChange={(d) => setDependentName(d.target.value)}
+                                    />
+                                </div>
+                            </div>
+                            <div className="row">
+                                <div className="col-md-4 form-group mb-2">
+                                    <label className="form-label"> Dependent Age :</label>
+                                    <input
+                                        type="number"
+                                        placeholder="Enter dependent age"
+                                        name="dependentAge"
+                                        className="form-control"
+                                        value={dependentAge}
+                                        onChange={(d) => setDependentAge(d.target.value)}
+                                    />
+                                </div>
+                                <div className="col-md-4 form-group mb-2">
+                                    <label className="form-label"> Dependent Gender :</label>
+                                    <input
+                                        type="text"
+                                        placeholder="Enter Dependent Gender"
+                                        name="dependentGender"
+                                        className="form-control"
+                                        value={dependentGender}
+                                        onChange={(d) => setDependentGender(d.target.value)}
+                                    />
+                                </div>
+                                <div className="col-md-4 form-group mb-2">
+                                    <label className="form-label"> Relationship :</label>
+                                    <input
+                                        type="text"
+                                        placeholder="Enter Relationship"
+                                        name="relationship"
+                                        className="form-control"
+                                        value={relationship}
+                                        onChange={(d) => setRelationship(d.target.value)}
+                                    />
+                                </div>
+                            </div>
+                            <div className="row">
+                                <div className="col-md-2">
+                                    <button className="btn btn-success" onClick={(d) => saveOrUpdateDependent(d)}>Submit</button>
+                                </div>
+                                <div className="col-md-2">
+                                    <button className="btn btn-danger">Cancel</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
                 </div>
+
 
                 <br /><br />
 
@@ -404,63 +409,68 @@ const EmployeeWrapperComponent = () => {
                     </table>
                 </div>
                 
-                <div className = "card-body">
-                    <form>
-                        <div className = "form-group mb-2">
-                            <label className = "form-label"> Insured ID :</label>
-                            <input
-                                type = "text"
-                                placeholder = "Enter insured id"
-                                name = "insuredId"
-                                className = "form-control"
-                                value = {insuredId}
-                                onChange = {(i) => setInsuredId(i.target.value)}
+                <div className="card col-md-8 offset-md-2">
+                    <br />
+                    <h2 className="text-center">Add/Update Insurance</h2>
+                    <div className="card-body">
+                        <form>
+                            <div className="row">
+                                <div className="col-md-4 form-group mb-2">
+                                    <label className="form-label"> Insured ID :</label>
+                                    <input
+                                        type="text"
+                                        placeholder="Enter insured id"
+                                        name="insuredId"
+                                        className="form-control"
+                                        value={insuredId}
+                                        onChange={(i) => setInsuredId(i.target.value)}
+                                    />
+                                </div>
+                                <div className="col-md-4 form-group mb-2">
+                                    <label className="form-label"> Amount Covered :</label>
+                                    <input
+                                        type="number"
+                                        placeholder="Enter Amount Covered"
+                                        name="amountCovered"
+                                        className="form-control"
+                                        value={amountCovered}
+                                        onChange={(i) => setAmountCovered(i.target.value)}
+                                    />
+                                </div>
+                                <div className="col-md-4 form-group mb-2">
+                                    <label className="form-label"> Premium Per Month :</label>
+                                    <input
+                                        type="number"
+                                        placeholder="Enter PremiumPerMonth"
+                                        name="premiumPerMonth"
+                                        className="form-control"
+                                        value={premiumPerMonth}
+                                        onChange={(i) => setPremiumPerMonth(i.target.value)}
+                                    />
+                                </div>
+                            </div>
+                            <button
+                                className="btn btn-success"
+                                onClick={(i) => saveOrUpdateInsurance(i)}
                             >
-                            </input>
-                        </div>
-                        <div className = "form-group mb-2">
-                            <label className = "form-label"> Amount Covered :</label>
-                            <input
-                                type = "number"
-                                placeholder = "Enter Amount Covered"
-                                name = "amountCovered"
-                                className = "form-control"
-                                value = {amountCovered}
-                                onChange = {(i) => setAmountCovered(i.target.value)}
-                            >
-                            </input>
-                        </div>
-                        <div className = "form-group mb-2">
-                            <label className = "form-label"> Premium Per Month :</label>
-                            <input
-                                type = "number"
-                                placeholder = "Enter PremiumPerMonth"
-                                name = "premiumPerMonth"
-                                className = "form-control"
-                                value = {premiumPerMonth}
-                                onChange = {(i) => setPremiumPerMonth(i.target.value)}
-                            >
-                            </input>
-                        </div>
-                        <button 
-                            className = "btn btn-success" 
-                            onClick = {(i) => saveOrUpdateInsurance(i)} 
-                        >
-                            Submit 
-                        </button>
-                        <button 
-                            className="btn btn-danger" 
-                            style={{marginLeft:'1em'}} 
-                        > 
-                            Cancel 
-                        </button>
-                    </form>
+                                Submit
+                            </button>
+                            <button className="btn btn-danger" style={{ marginLeft: "1em" }}>
+                                Cancel
+                            </button>
+                        </form>
+                    </div>
                 </div>
 
             </div>
             <br /><br />
-            <h2>PIE CHART</h2>
-            {<PieRechartComponent data={chartData} />}
+            <div className="col-md-8 offset-md-2">
+            <br />
+            <h2 style={{marginLeft: '5em'}}>Department's Net Expenditure Pie Chart</h2>
+            <div style={{ marginLeft: '6em' }}>
+            {<PieRechartComponent data={chartData}  />}
+            </div>
+            </div>
             <br /><br />
         </div>
     )

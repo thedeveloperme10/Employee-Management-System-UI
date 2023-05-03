@@ -10,15 +10,19 @@ class DependentService {
 
     createDependent(dependent) {
         let dependents = [dependent]
-        return axios.post(EMS_API_BASE_URL + "/addDependent/", dependents);
+        return axios.post(EMS_API_BASE_URL + "/addDependent/", dependents).then((response) => {
+            window.alert("Dependent added successfully")
+        });
     }
 
-    updateDependent(id, dependent) {
-        return axios.put(EMS_API_BASE_URL + "/updateDependentById/" + id, dependent);
+    async updateDependent(id, dependent) {
+        const response = await axios.put(EMS_API_BASE_URL + "/updateDependentById/" + id, dependent);
+        window.alert("Dependent with Id - " + response.data.dependentId + " updated successfully");
     }
 
-    deleteDependent(id) {
-        return axios.delete(EMS_API_BASE_URL + "/deleteDependentById/" + id);
+    async deleteDependent(id) {
+        const response = await axios.delete(EMS_API_BASE_URL + "/deleteDependentById/" + id);
+        window.alert("Dependent with Id - " + id + " deleted successfully");
     }
 
 }
