@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import employeeService from '../services/EmsService'
+import employeeService from '../services/EmployeeService'
 import dependentService from '../services/DependentService'
 import insuranceService from '../services/InsuranceService'
 import { useParams, Link } from 'react-router-dom'
@@ -24,6 +24,7 @@ const EmployeeWrapperComponent = () => {
     const updateCurrentEmpDetails = () => {
         employeeService.getEmployeeWrapperById(empId).then((response) => {
             setEmployee(response.data)
+        
         }).catch(error => {
             console.log(error);
         })
@@ -31,6 +32,7 @@ const EmployeeWrapperComponent = () => {
 
     useEffect(() => {
         updateCurrentEmpDetails()
+        setEmployeeId(empId);
     }, [])
 
     var chartData = []
@@ -142,15 +144,14 @@ const EmployeeWrapperComponent = () => {
     return (
         <div>
             <div className='container'>
-                <Link
-                    to={"/"}
-                    className="btn btn-primary"
-                    style={{ marginLeft: '1em', position: 'sticky', top: 5 }}
-                >
-                    Back to Employees List
-                </Link>
-                <h2 className="text-center"> Employee {employee.employeeName} </h2>
                 <br />
+                <h1 
+                    className="text-center" 
+                    style={{ color:'darkgreen', backgroundColor:'gold', top: 5 }}
+                > 
+                    Employee {employee.employeeName}'s Details 
+                </h1>
+                <br /><br />
                 <div>
                     <table className="table table-bordered table-striped">
                         <tr>
@@ -301,7 +302,8 @@ const EmployeeWrapperComponent = () => {
                                         name="employeeId"
                                         className="form-control"
                                         value={employeeId}
-                                        onChange={(d) => setEmployeeId(d.target.value)}
+                                        // onChange={(d) => setEmployeeId(d.target.value)}
+                                        readOnly
                                     />
                                 </div>
                                 <div className="col-md-4 form-group mb-2">
@@ -351,14 +353,18 @@ const EmployeeWrapperComponent = () => {
                                     />
                                 </div>
                             </div>
-                            <div className="row">
-                                <div className="col-md-2">
-                                    <button className="btn btn-success" onClick={(d) => saveOrUpdateDependent(d)}>Submit</button>
-                                </div>
-                                <div className="col-md-2">
-                                    <button className="btn btn-danger">Cancel</button>
-                                </div>
-                            </div>
+                            <button 
+                                className="btn btn-success" 
+                                onClick={(d) => saveOrUpdateDependent(d)}
+                            >
+                                Submit
+                            </button>
+                            <button 
+                                className="btn btn-danger" 
+                                style={{ marginLeft: "1em" }}
+                            >
+                                Cancel
+                            </button>
                         </form>
                     </div>
                 </div>
@@ -465,12 +471,19 @@ const EmployeeWrapperComponent = () => {
             </div>
             <br /><br />
             <div className="col-md-8 offset-md-2">
-            <br />
-            <h2 style={{marginLeft: '5em'}}>Department's Net Expenditure Pie Chart</h2>
-            <div style={{ marginLeft: '6em' }}>
-            {<PieRechartComponent data={chartData}  />}
+                <br />
+                <h2 style={{marginLeft: '5em'}}>Department's Net Expenditure Pie Chart</h2>
+                <div style={{ marginLeft: '6em' }}>
+                    {<PieRechartComponent data={chartData}  />}
+                </div>
             </div>
-            </div>
+            <Link
+                to={"/"}
+                className="btn btn-secondary"
+                style={{ marginLeft: '1em', position: 'sticky', left:'100em', bottom: 10}}
+            >
+                &#8592;
+            </Link>
             <br /><br />
         </div>
     )

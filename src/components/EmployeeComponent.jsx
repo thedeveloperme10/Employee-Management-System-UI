@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
-import employeeService from '../services/EmsService'
+import employeeService from '../services/EmployeeService'
 
-const EMSComponent = () => {
+const EmployeeComponent = () => {
     
     const [employees, setEmployees] = useState([])
     useEffect(() => {
@@ -98,6 +98,10 @@ const EMSComponent = () => {
 
     return (
         <div className="container">
+            <br />
+            <div style={{backgroundColor:'gold'}}>
+                <h1 className="text-center" style={{color:'darkgreen'}}> Employee Management System </h1>
+            </div>
             <br /><br />
             <div className="row">
             <div className="card col-md-8 offset-md-2">
@@ -265,4 +269,4 @@ const EMSComponent = () => {
     )
 }
 
-export default EMSComponent
+export default EmployeeComponent
